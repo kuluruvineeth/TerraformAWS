@@ -25,7 +25,7 @@
 6. Creating an EC2 Instance in default VPC
 
 ## Step-02: c2-variables.tf - Define Input Variables in Terraform
-- [Terraform Input Variables]https://www.terraform.io/docs/language/values/variables.html)
+- [Terraform Input Variables](https://www.terraform.io/docs/language/values/variables.html)
 ```
 # AWS Region
 variable "aws_region" {
