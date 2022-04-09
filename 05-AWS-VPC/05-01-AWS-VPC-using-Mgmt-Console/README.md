@@ -36,7 +36,7 @@
 - **Name:** my-nat-gateway
 - **Subnet:** my-public-subnet-1
 - **Allocate Elastic Ip:** click on that
-- - Click on **Create NAT Gateway**
+- Click on **Create NAT Gateway**
 
 ## Step-06: Create Public Route Table and Create Routes and Associate Subnets
 ### Step-06-01: Create Public Route Table
