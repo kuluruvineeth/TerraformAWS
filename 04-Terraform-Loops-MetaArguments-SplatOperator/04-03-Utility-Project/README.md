@@ -13,7 +13,7 @@
 
 ## Step-02: c1-versions.tf
 - Hard-coded the region as we are not going to use any `variables.tf` in this utility project
-```
+```t
 # Provider Block
 provider "aws" {
     region = "us-east-1"
@@ -22,12 +22,12 @@ provider "aws" {
 
 ## Step-03: c2-v1-get-instancetype-supported-per-az-in-a-region.tf
 - We are first going to explore the datasource and it outputs
-```
+```t
 # Determine which Availability Zones support your instance type
 aws ec2 describe-instance-type-offerings --location-type availability-zone --filters Name=instance-type,Values=t3.micro --region us-east-1 --output table
 ```
 ## Step-03-01: Review / Create the datasource and its output
-```
+```t
 # Datasource
 data "aws_ec2_instance_type_offerings" "my_ins_type1" {
     filter {
@@ -47,7 +47,7 @@ output "output_v1_1" {
 }
 ```
 ### Step-03-02: Execute Terraform Commands
-```
+```t
 # Terraform Initialize
 terraform init
 
@@ -79,7 +79,7 @@ output_v1_1 = toset([])
 ## Step-04: c2-v2-get-instancetype-supported-per-az-in-a-region.tf
 - Using `for_each` create multiple instances of datasource and loop it with hard-coded availability zones in `for_each`
 ### Step-04-01: Review / Create the datasource and its output with for_each
-```
+```t
 # Check if that respective Instance Type is supported in that Specific Region in list of availability Zones
 # Get the list of Availability Zones in a Particular region where that respective Instance Type is supported
 data "aws_ec2_instance_type_offerings" "my_ins_type2" {
@@ -109,7 +109,7 @@ output "output_v2_2" {
 ```
 
 ### Step-04-02: Execute Terraform Commands
-```
+```t
 # Terraform Plan
 terraform plan
 terraform apply -auto-approve
@@ -133,7 +133,7 @@ output_v2_2 = {
 
 ### Step-05-01: Add new datasource aws_availability_zones
 - Get List of Availability Zones in a Specific Region
-```
+```t
 # Get List of Availability Zones in a Specific Region
 # Region is set in c1-versions.tf in Provider Block
 data "aws_availability_zones" "my_azones" {
@@ -145,7 +145,7 @@ data "aws_availability_zones" "my_azones" {
 ```
 
 ### Step-05-02: Update for_each with new datasource
-```
+```t
 # Check if that respective Instance Type is supported in that Specific Region in list of availability Zones
 # Get the List of Availability Zones in a Particular region where that respective Instance Type is supported
 data "aws_ec2_instance_type_offerings" "my_ins_type" {
@@ -163,7 +163,7 @@ data "aws_ec2_instance_type_offerings" "my_ins_type" {
 ```
 
 ### Step-05-03: Implement Incremental Outputs till we reach what is required
-```
+```t
 # Basic Output: All Availability Zones mapped to Supported Instance Types
 output "output_v3_1" {
     value = {for az, details in data.aws_ec2_instance_type_offerings.my_ins_type : az => details.instance_types}
@@ -187,7 +187,7 @@ output "output_v3_4" {
 ```
 
 ### Step-05-04: Execute Terraform Commands
-```
+```t
 # Terraform Plan
 terraform plan
 terraform apply -auto-approve
@@ -240,7 +240,7 @@ output_v3_4 = "us-east-1a"
 ```
 
 ## Step-06: Clean-Up
-```
+```t
 # Terraform Destroy
 terraform destroy -auto-approve
 
