@@ -18,7 +18,7 @@
 - To understand more about [for_each](https://www.terraform.io/docs/language/meta-arguments/for_each.html)
 
 ### Step-03-01: Availability Zones Datasource
-```
+```t
 # Availability Zones Datasource
 data "aws_availability_zones" "my_azones" {
     filter { 
@@ -29,7 +29,7 @@ data "aws_availability_zones" "my_azones" {
 ```
 
 ### Step-03-02: EC2 Instance Resource
-```
+```t
 # EC2 Instance
 resource "aws_instance" "myec2vm" {
     ami = data.aws_ami.amzlinux2.id
@@ -47,7 +47,7 @@ resource "aws_instance" "myec2vm" {
 ```
 
 ## Step-04: c6-outputs.tf
-```
+```t
 # EC2 Instance Public IP with TOSET
 output "instance_publicip" {
     description = "EC2 Instance Public IP"
@@ -78,7 +78,7 @@ output "instance_publicdns2" {
 ```
 
 ## Step-05: Execute Terraform Commands
-```
+```t
 # Terraform Initialize
 terraform init
 
@@ -96,7 +96,7 @@ Observations:
 ```
 
 ## Step-06: Clean-Up
-```
+```t
 # Terraform Destroy
 terraform destroy -auto-approve
 

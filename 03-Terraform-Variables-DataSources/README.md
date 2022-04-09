@@ -26,7 +26,7 @@
 
 ## Step-02: c2-variables.tf - Define Input Variables in Terraform
 - [Terraform Input Variables](https://www.terraform.io/docs/language/values/variables.html)
-```
+```t
 # AWS Region
 variable "aws_region" {
     description = "Region in which AWS Resources to be created"
@@ -49,7 +49,7 @@ variable "instance_keypair" {
 }
 ```
 - Reference the variables in respective `.tf` files
-```
+```t
 # c1-versions.tf
 region = var.aws_region
 
@@ -60,7 +60,7 @@ key_name = var.instance_keypair
 
 ## Step-03: c3-ec2securitygroups.tf - Define Security Group Resources in Terraform
 - [Resource: aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)
-```
+```t
 # Create Security Group - SSH Traffic
 resource "aws_security_group" "vpc-ssh" {
     name = "vpc-ssh"
@@ -111,14 +111,14 @@ resource "aws_security_group" "vpc_web" {
 }
 ```
 - Reference the security groups in `c5-ec2instance.tf` file as a list item
-```
+```t
 # List Item
 vpc_security_group_ids = [aws_security_group.vpc-ssh.id,aws_security_group.vpc-web.id]
 ```
 
 ## Step-04: c4-ami-datasource.tf - Define Get Latest AMI ID for Amazon Linux2 OS
 - [Data Source: aws_ami](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami)
-```
+```t
 # Get latest AMI ID for Amazon Linux2 OS
 # Get Latest AWS AMI ID for Amazon2 Linux
 data "aws_ami" "amzlinux2" {
@@ -143,14 +143,14 @@ data "aws_ami" "amzlinux2" {
 }
 ```
 - Reference the datasource in `c5-ec2instance.tf` file
-```
+```t
 # Reference Datasource to get the latest AMI ID
 ami = data.aws_ami.amzlinux2.id
 ```
 
 ## Step-05: c5-ec2instance.tf - Define EC2 Instance Resource
 - [Resource: aws_instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)
-```
+```t
 # EC2 Instance
 resource "aws_instance" "myec2vm" {
     ami = data.aws_ami.amzlinux2.id
@@ -166,7 +166,7 @@ resource "aws_instance" "myec2vm" {
 
 ## Step-06: c6-outputs.tf - Define Output Values
 - [Output Values](https://www.terraform.io/docs/language/values/outputs.html)
-```
+```t
 # Terraform Output Values
 output "instance_publicip" {
     description = "EC2 Instance Public IP"
@@ -180,7 +180,7 @@ output "instance_publicdns" {
 ```
 
 ## Step-07: Execute Terraform Commands
-```
+```t
 # Terraform Initialize
 terraform init
 Observation:
@@ -211,7 +211,7 @@ Observation:
 ```
 
 ## Step-08: Access Application
-```
+```t
 # Access index.html
 http://<PUBLIC-IP>/index.html
 http://<PUBLIC-IP>/app1/index.html
@@ -220,7 +220,7 @@ http://<PUBLIC-IP>/app1/index.html
 http://<PUBLIC-IP>/app1/metadata.html
 ```
 ## Step-09: Clean-Up
-```
+```t
 # Terraform Destroy
 terraform plan -destroy # You can view destroy plan using this command
 terraform destroy

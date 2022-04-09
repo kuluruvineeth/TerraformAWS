@@ -13,7 +13,7 @@
 - **Pre-Conditions-2:** Ensure AMI you are provisioning exists in that region if not update AMI ID
 - **Pre-Conditions-3:** Verify your AWS Credentials in **$HOME/.aws/credentials**
 
-```
+```t
 # Terraform Settings Block
 terraform {
     required_providers {
@@ -38,7 +38,7 @@ resource "aws_instance" "ec2demo" {
 ```
 
 ## Step-03: Terraform Core Commands
-```
+```t
 # Initialize Terraform
 terraform init
 
@@ -57,7 +57,7 @@ terraform apply
 - Verify newly created EC2 instance
 
 ## Step-05: Destroy Infrastructure
-```
+```t
 # Destroy EC2 Instance
 terraform destroy
 

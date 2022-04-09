@@ -21,7 +21,7 @@
 - No changes
 
 ## Step-03: c2-variables.tf - Lists and Maps
-```
+```t
 # AWS EC2 Instance Type - List
 variable "instance_type_list" {
     description = "EC2 Instance Type"
@@ -45,7 +45,7 @@ variable "instance_type_map" {
 - No changes to both files
 
 ## Step-05: c5-ec2instance.tf
-```
+```t
 # How to reference list values ? 
 instance_type = var.instance_type_list[1]
 
@@ -65,7 +65,7 @@ count = 2
 - for loop with list
 - for loop with map
 - for loop with Map Advanced
-```
+```t
 # Output - For Loop with List
 output "for_output_list" {
     description = "For Loop with List"
@@ -98,7 +98,7 @@ output "latest_splat_instance_publicdns" {
 ```
 
 ## Step-07: Execute Terraform Commands
-```
+```t
 # Terraform Initialize
 terraform init
 
@@ -123,7 +123,7 @@ Observations:
 - Multi-line Comments - `Start with /*` and `end with */`
 
 ## Step-09: Clean-Up
-```
+```t
 # Terraform Destroy
 terraform destroy -auto-approve
 

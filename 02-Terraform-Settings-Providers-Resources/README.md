@@ -8,7 +8,7 @@
 
 ## Step-02: In c1-versions.tf - Create Terraform Settings Block
 - Understand about [Terraform Settings Block](https://www.terraform.io/docs/language/settings/index.html) and create it
-```
+```t
 terraform {
     required_version = "~> 0.14" # which means any version equal & above 0.14 like 0.15, 0.16 etc and < 1.xx
     required_providers {
@@ -23,12 +23,12 @@ terraform {
 ## Step-03: In c1-versions.tf - Create Terraform Providers Block
 - Understand about [Terraform Providers](https://www.terraform.io/docs/providers/index.html)
 - Configure AWS Credentials in the AWS CLI if not configured
-```
+```t
 # Verify AWS Credentials
 cat $HOME/.aws/credentials
 ```
 - Create [AWS Providers Block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication)
-```
+```t
 # Provider Block
 provider "aws" {
     region = "us-east-1"
@@ -42,7 +42,7 @@ provider "aws" {
 - Understand about [File Function](https://www.terraform.io/docs/language/functions/file.html)
 - Understand about [Resources - Argument Reference](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#argument-reference)
 - Understand about [Resources - Attribute Reference](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#attributes-reference)
-```
+```t
 # Resource: EC2 Instance
 resource "aws_instance" "myec2vm" {
     ami = "ami-0c02fb55956c7d316"
@@ -55,7 +55,7 @@ resource "aws_instance" "myec2vm" {
 ```
 
 ## Step-05: Review file app1-install.sh
-```
+```sh
 #! /bin/bash
 # Instance Identity Metadata Reference - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html
 sudo yum update -y
@@ -69,7 +69,7 @@ sudo curl http://169.254.169.254/latest/dynamic/instance-identity/document -o /v
 ```
 
 ## Step-06: Execute Terraform Commands
-```
+```t
 # Terraform Initialize
 terraform init
 Observation:
@@ -98,7 +98,7 @@ Observations:
 
 ## Step-07: Access Application
 - **Important Note:** verify if default VPC security group has a rule to allow port 80
-```
+```t
 # Access index.html
 http://<PUBLIC-IP>/index.html
 http://<PUBLIC-IP>/app1/index.html
@@ -113,7 +113,7 @@ http://<PUBLIC-IP>/app1/metadata.html
 - Understand about `Desired State` and `Current State`
 
 ## Step-09: Clean-Up
-```
+```t
 # Terraform Destroy
 terraform plan -destroy # You can view destroy plan using this command
 terraform destroy
