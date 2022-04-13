@@ -14,7 +14,7 @@ description: Terraform Remote State Datasource Demo with two projects
 ## Step-02: Copy Project 1 VPC from Section 19
 - Copy `project-1-aws-vpc` from `19-Remote-State-Storage-with-AWS-S3-and-DynamoDB`
 
-## Step-03: Copy Project 2 App1 with ASG and ALB from Section 15
+## Step-03: Copy Project 2 App1 with ASG and ALB from Section 14
 - Copy `terraform-manifests\*` all files from Section `14-Autoscaling-with-Launch-Templates` and copy to `project-2-app1-with-asg-and-alb`
 
 ## Step-04: Remove VPC related TF Config Files from Project-2
